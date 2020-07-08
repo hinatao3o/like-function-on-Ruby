@@ -1,0 +1,25 @@
+<% content_for(:html_title) { '企業アカウント作成' } %>
+
+<%= form_for @corporation_admin, url: '/corporation_admins/create' do |f| %>
+
+  <%= f.label '企業' %>
+  <select id="corporation_admin_corporation_id" name="corporation_admin[corporation_id]">
+    <% @corporations.each do |corporation| %>
+      <option value="<%= corporation.id %>"><%= corporation.name %></option>  
+    <% end %>
+  </select>
+
+  <%= f.label :name %>
+  <%= f.text_field :name, required: true %>
+
+  <%= f.label :email %>
+  <%= f.text_field :email, required: true %>
+
+  <%= f.label :password %>
+  <%= f.password_field :password, required: true %>
+
+  <%= f.label :password_confirmation %>
+  <%= f.password_field :password_confirmation, required: true %>
+
+  <%= f.submit '登録' %>
+<% end %>

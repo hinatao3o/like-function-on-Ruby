@@ -1,0 +1,9 @@
+<header>
+  <ul>
+    <li><%= link_to icon('fas', 'home')+"求人一覧", '/corp_admin/index' %></li>
+    <% if(@current_corp_admin.present?) %>
+      <li><%= icon('fas', 'user')+' '+@current_corp_admin.name+'さん' %></li>
+      <li><%= link_to icon('fas', 'sign-out-alt')+'ログアウト', '/corp_admin/logout', method: :delete %></li>
+    <% end %>
+  </ul>
+</header>

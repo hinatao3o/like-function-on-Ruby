@@ -1,0 +1,12 @@
+<% if user_like_flag %>
+  <% if job_like_flag %>
+    <button class="disabled match"><%= icon('far', 'thumbs-up') %>マッチ</button>
+  <% else %>
+    <button class="disabled"><%= icon('far', 'thumbs-up') %>いいね済み</button>
+  <% end %>
+<% else %>
+  <div></div>
+  <%= button_to "/users/#{job_id}/#{user_id}/like", method: :post, remote: true do %>
+    <%= icon('far', 'thumbs-up') %>いいね
+  <% end %>
+<% end %>

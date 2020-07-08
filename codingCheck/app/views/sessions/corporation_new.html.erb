@@ -1,0 +1,14 @@
+<% content_for(:html_title) { '企業アカウントログイン' } %>
+
+<h1>企業ログイン</h1>
+<%= form_for :session, url: '/corp_admin/login' do |f| %>
+  <%= f.label :email %>
+  <%= f.text_field :email, required: true %>
+  <%= f.label :password %>
+  <%= f.password_field :password, required: true %>
+
+  <%= f.submit 'ログイン' %>
+<% end %>
+
+<div><%= link_to "サインアップはこちら", '/corp_admin/signup' %></div>
+<div><%= link_to "通常ログインはこちら", login_path %></div>

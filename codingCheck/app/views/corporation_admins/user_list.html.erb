@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ja" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <% content_for(:html_title) { 'ユーザー一覧' } %>
+  </head>
+  <body>
+    <%= render 'layouts/corp_admin_header' %>
+
+    <% if @users.present? %>
+      <table>
+        <tr>
+          <th>ユーザーID</th>
+          <th>名前</th>
+          <th><%= icon('far', 'thumbs-up') %>ユーザーからのいいかも</th>
+          <th><%= icon('far', 'thumbs-up') %>いいね</th>
+        </tr>
+        <% @users.each do |user| %>
+          <tr>
+            <td><%= user.id %></td>
+            <td><%= user.name %></td>
+            <td><%= (@job_like_user_ids.include? user.id) ? 'あり' : 'なし' %></td>
+            <td id="like-<%= user.id %>">
+              <%= render partial: "like_user", locals: { user_id: user.id, job_id: @job.id, user_like_flag: (@user_likes.include? user.id), job_like_flag: (@job_like_user_ids.include? user.id) } %>
+            </td>
+          </tr>
+        <% end %>
+      </table>
+    <% else %>
+      <div class="notfound">
+        ユーザーがいません！
+      </div>
+    <% end %>
+  </body>
+</html>
+<%= javascript_pack_tag 'loading' %>

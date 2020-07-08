@@ -1,0 +1,9 @@
+<header>
+  <ul>
+    <li><%= link_to icon('fas', 'home')+"求人一覧", root_path %></li>
+    <% if(@current_user.present?) %>
+      <li><%= icon('fas', 'user')+' '+@current_user.name %></li>
+      <li><%= link_to icon('fas', 'sign-out-alt')+'ログアウト', logout_path, method: :delete %></li>
+    <% end %>
+  </ul>
+</header>

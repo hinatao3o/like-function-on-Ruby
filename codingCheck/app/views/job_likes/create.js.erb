@@ -1,0 +1,4 @@
+// ロードのアニメーションを見せるために遅らせています
+setTimeout(function(){
+  $("#like-<%= @job.id %>").html("<%= j(render partial: 'jobs/like', locals: { job: @job, user_like_flag: @user_like_flag, job_like_flag: @job_like_flag }) %>");
+}, 500);

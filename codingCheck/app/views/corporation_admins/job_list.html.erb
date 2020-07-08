@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ja" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <% content_for(:html_title) { '求人一覧' } %>
+  </head>
+  <body>
+    <%= render 'layouts/corp_admin_header' %>
+    
+    <% if @jobs.present? %>
+      <table>
+        <tr>
+          <th>求人ID</th>
+          <th>タイトル</th>
+          <th style="width: 450px;">内容</th>
+          <th><%= icon('far', 'thumbs-up') %>ユーザーからのいいかも</th>
+          <th><%= icon('far', 'thumbs-up') %>いいね</th>
+        </tr>
+        <% @jobs.each do |job| %>
+          <tr>
+            <td><%= job.id %></td>
+            <td><%= job.title %></td>
+            <td><%= job.description %></td>
+            <td><%= job.job_likes.present? ? job.job_likes.length.to_s+'件' : '0件' %></td>
+            <td><%= link_to "ユーザーを探す", '/corp_admin/user_list/'+job.id.to_s %></td>
+          </tr>
+        <% end %>
+      </table>
+    <% else %>
+      <div class="notfound">
+        まだ1件も求人を公開していません！
+      </div>
+    <% end %>
+  </body>
+</html>

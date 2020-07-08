@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ja" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <% content_for(:html_title) { '求人一覧' } %>
+  </head>
+  <body>
+    <%= render 'layouts/header' %>
+    
+    <% if @jobs.present? %>
+      <table>
+        <tr>
+          <th>求人ID</th>
+          <th>タイトル</th>
+          <th style="width: 450px;">内容</th>
+          <th><%= icon('far', 'thumbs-up') %>企業からのいいね</th>
+          <th><%= icon('far', 'thumbs-up') %>いいかも</th>
+        </tr>
+        <% @jobs.each do |job| %>
+          <tr>
+            <td><%= job.id %></td>
+            <td><%= job.title %></td>
+            <td><%= job.description %></td>
+            <td><%= (@user_likes.include? job.id) ? 'あり' : 'なし' %></td>
+            <td id="like-<%= job.id %>">
+              <%= render partial: "like", locals: { job: job, user_like_flag: (@user_likes.include? job.id), job_like_flag: (@job_likes.include? job.id) } %>
+            </td>
+          </tr>
+        <% end %>
+      </table>
+    <% else %>
+      <div class="notfound">
+        求人がまだ公開されていません！
+      </div>
+    <% end %>
+  </body>
+</html>
+<%= javascript_pack_tag 'loading' %>

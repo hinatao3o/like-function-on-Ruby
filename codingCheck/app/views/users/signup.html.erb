@@ -1,0 +1,18 @@
+<% content_for(:html_title) { 'アカウント作成' } %>
+
+<%= form_for @user, url: 'users/create' do |f| %>
+
+  <%= f.label :name %>
+  <%= f.text_field :name, required: true %>
+
+  <%= f.label :email %>
+  <%= f.text_field :email, required: true %>
+
+  <%= f.label :password %>
+  <%= f.password_field :password, required: true %>
+
+  <%= f.label :password_confirmation %>
+  <%= f.password_field :password_confirmation, required: true %>
+
+  <%= f.submit '登録' %>
+<% end %>

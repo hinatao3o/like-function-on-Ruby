@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      <%= content_for?(:html_title) ? yield(:html_title) : "" %>
+    </title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+  
+  <script type="text/javascript">
+    $(function() {
+      setTimeout(function(){
+        $(".notification").fadeOut(1000);
+      },1000);
+    });
+  </script>
+
+  <body>
+    <% if alert.present? || notice.present? %>
+      <div class="notification <%= alert.present? ? 'alert' : 'notice' %>">
+        <% if alert.present? %>
+          <%= alert %>
+        <% elsif notice.present? %>
+          <%= notice %>
+        <% end %>
+      </div>
+    <% end %>
+    
+    <%= yield %>
+  </body>
+</html>
